@@ -53,6 +53,7 @@ $ns duplex-link-op $s6 $s4 orient left
 
 set tcp0 [new Agent/TCP]
 $tcp0 set class_ 2
+$tcp0 set window_ 32; # Default = 20 (pkts)
 $ns attach-agent $s0 $tcp0
 set sink0 [new Agent/TCPSink]
 $ns attach-agent $s5 $sink0
@@ -68,6 +69,7 @@ $udp set fid_ 2
 
 set tcp1 [new Agent/TCP]
 $tcp1 set class_ 2
+$tcp1 set window_ 64
 $ns attach-agent $s1 $tcp1
 set sink1 [new Agent/TCPSink]
 $ns attach-agent $s6 $sink1
@@ -76,6 +78,7 @@ $tcp1 set fid_ 3
 
 set tcp2 [new Agent/TCP]
 $tcp2 set class_ 2
+$tcp2 set window_ 16
 $ns attach-agent $s2 $tcp2
 set sink2 [new Agent/TCPSink]
 $ns attach-agent $s7 $sink2
