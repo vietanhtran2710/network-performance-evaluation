@@ -98,8 +98,9 @@ $ftp2 attach-agent $tcp2
 $ftp2 set type_ FTP
 
 set cbr [new Application/Traffic/CBR]
+$cbr set type_ CBR
 $cbr set packetSize_ 1000
-$cbr set rate_ 1.5 mb
+$cbr set rate_ 1.5mb
 # $cbr set random_ false
 $cbr attach-agent $udp
 
