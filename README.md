@@ -9,13 +9,13 @@ https://github.com/vietanhtran2710/network-performance-evaluation
 
 Ví dụ: 
 
-`python3 averageThroughput.py out.tf tcp0`
+`python3 averageThroughput.py out.tr tcp0`
 
-`python3 averageThroughput.py out.tf tcp1`
+`python3 averageThroughput.py out.tr tcp1`
 
-`python3 averageThroughput.py out.tf tcp2`
+`python3 averageThroughput.py out.tr tcp2`
 
-`python3 averageThroughput.py out.tf udp`
+`python3 averageThroughput.py out.tr udp`
 
 2. Tính độ trễ trung bình của các gói tin theo từng kết nôi:
 
@@ -23,11 +23,11 @@ Ví dụ:
 
 Ví dụ: 
 
-`python3 averageDelay.py out.tf tcp0`
+`python3 averageDelay.py out.tr tcp0`
 
-`python3 averageDelay.py out.tf tcp1`
+`python3 averageDelay.py out.tr tcp1`
 
-`python3 averageDelay.py out.tf tcp2`
+`python3 averageDelay.py out.tr tcp2`
 
-`python3 averageDelay.py out.tf udp`
+`python3 averageDelay.py out.tr udp`
 

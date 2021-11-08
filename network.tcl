@@ -8,7 +8,7 @@ $ns color 4 Blue
 set nf [open out.nam w]
 $ns namtrace-all $nf
 
-set tf [open out.tf w]
+set tf [open out.tr w]
 $ns trace-all $tf
 
 proc finish {} {
