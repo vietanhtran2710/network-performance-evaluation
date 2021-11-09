@@ -65,6 +65,6 @@ else:
             count += ackCount
             delay += ackDelay
         averageDelay = delay / count
-        print("Average packets delay of", connectionName, "=", averageDelay)
+        print("Average packets delay of", connectionName, "=", averageDelay, "seconds")
     except FileNotFoundError:
         print("File", sys.argv[1], "doesn't exist! Exited")

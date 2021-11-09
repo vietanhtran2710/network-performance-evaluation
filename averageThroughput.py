@@ -47,6 +47,6 @@ else:
             totalPacketSize += getTotalPacketsSize(filterPackets(data, ackCondition))
         duration = 10 if connectionName.startswith("tcp") else 1
         averageThroughput = totalPacketSize / duration
-        print("Average throughput of", connectionName, "=", averageThroughput)
+        print("Average throughput of", connectionName, "=", averageThroughput, "bytes/s")
     except FileNotFoundError:
         print("File", sys.argv[1], "doesn't exist! Exited")
