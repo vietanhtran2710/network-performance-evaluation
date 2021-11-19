@@ -8,11 +8,6 @@ CONDITIONS = {
     "tcp2": {TO_NODE: '7', EVENT: 'r'},
     "udp": {TO_NODE: '6', EVENT: 'r', PACKET_TYPE: 'cbr'},
 }
-ACK_CONDITIONS = {
-    "tcp0": {FROM_NODE: '5', TO_NODE: '4', EVENT: '+'},
-    "tcp1": {FROM_NODE: '6', TO_NODE: '4', EVENT: '+'},
-    "tcp2": {FROM_NODE: '7', TO_NODE: '4', EVENT: '+'},
-}
 
 def filterPackets(data, condition):
     result = []
@@ -27,8 +22,10 @@ def filterPackets(data, condition):
             result.append(items)
     return result
 
-def getTotalPacketsSize(connection):
-    return sum([int(packets[PACKET_SIZE]) for packets in connection])
+def getAverageThroughput(connection):
+    startTime = float(min(connection, key= lambda x: float(x[TIME]))[TIME])
+    endTime = float(max(connection, key= lambda x: float(x[TIME]))[TIME])
+    return sum([int(packets[PACKET_SIZE]) for packets in connection]) / (endTime - startTime) * 8 / 1024
 
 if len(sys.argv) < 3:
     print("Usage: python3 averageThroughput.py [TRACE FILE NAME] [CONNECTION NAME]")
@@ -41,12 +38,7 @@ else:
             data = f.readlines()
         connectionName = sys.argv[2].lower()
         condition = CONDITIONS[connectionName]
-        totalPacketSize = getTotalPacketsSize(filterPackets(data, condition))
-        if connectionName.startswith("tcp"):
-            ackCondition = ACK_CONDITIONS[connectionName]
-            totalPacketSize += getTotalPacketsSize(filterPackets(data, ackCondition))
-        duration = 10 if connectionName.startswith("tcp") else 1
-        averageThroughput = totalPacketSize / duration
-        print("Average throughput of", connectionName, "=", averageThroughput, "bytes/s")
+        packetThroughput = getAverageThroughput(filterPackets(data, condition))
+        print("Average throughput of", connectionName, "=", packetThroughput, "Kbps")
     except FileNotFoundError:
         print("File", sys.argv[1], "doesn't exist! Exited")
