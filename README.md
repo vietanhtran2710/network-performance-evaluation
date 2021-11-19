@@ -36,8 +36,11 @@ Ví dụ:
 
 Ví dụ:
 tcp0: `perl throughput.pl out.tr 0 5 > out-tcp0.tr`
+
 tcp1: `perl throughput.pl out.tr 1 6 > out-tcp1.tr`
+
 tcp2: `perl throughput.pl out.tr 2 7 > out-tcp2.tr`
+
 cbr: `perl throughput.pl out.tr 3 6 > out-cbr.tr`
 
 4. Tạo trace thông lượng trung bình trong từng khoảng thời gian granularity của 4 kết nối
@@ -45,12 +48,18 @@ cbr: `perl throughput.pl out.tr 3 6 > out-cbr.tr`
 
 Ví dụ:
 tcp0: `perl throughput.pl out.tr 0 5 0.15 > out-tcp0.tr`
+
 tcp1: `perl throughput.pl out.tr 1 6 0.15 > out-tcp1.tr`
+
 tcp2: `perl throughput.pl out.tr 2 7 0.15 > out-tcp2.tr`
+
 cbr: `perl throughput.pl out.tr 3 6 0.15 > out-cbr.tr`
 
 5. Vẽ đồ thị thông lượng trung bình bằng gnuplot
 `set title “Throughput_vs_sim_time of all Connections”`
+
 `set xlabel “Simulation Time (s)”`
+
 `set ylabel “Throughput(t) (kbps)”`
+
 `Plot ‘out-tcp0.tr’ w lines,‘out-tcp0.tr’ w lines, ‘out-tcp1.tr’ w lines, ‘out-tcp2.tr’ w lines, ‘out-cbr.tr’ w lines`
