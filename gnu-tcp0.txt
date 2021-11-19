@@ -1,0 +1,5 @@
+set origin 0, 0
+set size 1.5, 1
+set title "TCP connection n0-n5, Delay, Mean-Delay and Jitter vs Simulation Time“
+set xlabel "Time (s)”
+plot "delay-tcp0.txt" using 2:4 t "Delay" w p, "delay-tcp0.txt" using 2:5 t "Mean-Delay" w p, "delay-tcp0.txt" using 2:6 t "Jitter" w p
