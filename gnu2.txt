@@ -1,0 +1,5 @@
+set origin 0, 0
+set size 1.5, 1
+set title "Comparison of packet Delay of TCP and UDP connections"
+set xlabel "Time (s)”
+plot "delay-tcp0.tr" using 2:4 t "TCP0" w p, "delay-tcp1.tr" using 2:4 t "TCP1" w p, "delay-tcp2.tr" using 2:4 t "TCP2" w p, "delay-udp.tr" using 2:4 t "UDP" w p
