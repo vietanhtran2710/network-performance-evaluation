@@ -80,7 +80,7 @@ a) Cài đặt Matplotlib cho Python: `pip install matplotlib`
 
 b) Chạy code Python từ dòng lệnh: `python3 delayGraph.py <trace file> <connection name> > <output file>`
 
-Connection name có thể là 1 trong 4: ()
+Connection name có thể là 1 trong 4: (tcp0, tcp1, tcp2, udp)
 
 Ví dụ: 
 
