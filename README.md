@@ -94,18 +94,22 @@ Ví dụ:
 
 7. Vẽ đồ thị bằng Gnuplot bằng 4 file output:
 
-a) Vẽ đồ thị cho từng luồng:
+a) Vẽ đồ thị cho từng luồng (`gnu1.txt`):
 ```
-set title "TCP connection n0-n5, Delay, Mean_Delay and Jitter vs Simulation Time“
+set origin 0, 0
+set size 1.5, 1
+set title "TCP connection n0-n5, Delay, Mean-Delay and Jitter vs Simulation Time“
 set xlabel "Time (s)”
-plot "delay-tcp0.tr" using 2:4 t "Delay" w lines, "delay-tcp0.tr" using 2:5 t "Mean_Delay" w lines, "delay-tcp0.tr" using 2:6 t "Jitter" w lines
+plot "delay-udp.tr" using 2:4 t "Delay" w p, "delay-udp.tr" using 2:5 t "Mean-Delay" w p, "delay-udp.tr" using 2:6 t "Jitter" w p
 ```
 Ta có thể thay `delay-tcp0.tr` bằng bất kỳ file output nào khác được tạo ra bởi code Python `delayGraph.py` phía trên
 
-b) Vẽ đồ thị so sánh sự thay đổi của delay của 3 kết nối TCP và 1 "kết nối” UDP theo thời gian mô phỏng:
+b) Vẽ đồ thị so sánh sự thay đổi của delay của 3 kết nối TCP và 1 "kết nối” UDP theo thời gian mô phỏng (`gnu2.txt`):
 ```
+set origin 0, 0
+set size 1.5, 1
 set title "Comparison of packet Delay of TCP and UDP connections"
 set xlabel "Time (s)”
-plot "tcp0-5.tr" using 2:4 w lines,"tcp1-6.tr" using 2:4 w lines,"tcp2-7.tr" using 2:4 w lines,”udp3-6.tr” using 2:4 w lines
+plot "delay-tcp0.tr" using 2:4 t "TCP0" w p, "delay-tcp1.tr" using 2:4 t "TCP1" w p, "delay-tcp2.tr" using 2:4 t "TCP2" w p, "delay-udp.tr" using 2:4 t "UDP" w p
 ```
 
