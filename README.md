@@ -96,8 +96,8 @@ Ví dụ:
 
 a) Vẽ đồ thị cho từng luồng:
 ```
-set title "TCP connection n0-n5, Delay, Mean_Delay and Jitter vs Simulation Time“
-set xlabel "Time (s)”
+set title "TCP connection n0-n5, Delay, Mean_Delay and Jitter vs Simulation Time"
+set xlabel "Time (s)"
 plot "delay-tcp0.tr" using 2:4 t "Delay" w lines, "delay-tcp0.tr" using 2:5 t "Mean_Delay" w lines, "delay-tcp0.tr" using 2:6 t "Jitter" w lines
 ```
 Ta có thể thay `delay-tcp0.tr` bằng bất kỳ file output nào khác được tạo ra bởi code Python `delayGraph.py` phía trên
@@ -105,7 +105,7 @@ Ta có thể thay `delay-tcp0.tr` bằng bất kỳ file output nào khác đư�
 b) Vẽ đồ thị so sánh sự thay đổi của delay của 3 kết nối TCP và 1 "kết nối” UDP theo thời gian mô phỏng:
 ```
 set title "Comparison of packet Delay of TCP and UDP connections"
-set xlabel "Time (s)”
-plot "tcp0-5.tr" using 2:4 w lines,"tcp1-6.tr" using 2:4 w lines,"tcp2-7.tr" using 2:4 w lines,”udp3-6.tr” using 2:4 w lines
+set xlabel "Time (s)"
+plot "delay-tcp0.tr" using 2:4 w lines,"delay-tcp1.tr" using 2:4 w lines,"delay-tcp2.tr" using 2:4 w lines,”delay-udp.tr" using 2:4 w lines
 ```
 

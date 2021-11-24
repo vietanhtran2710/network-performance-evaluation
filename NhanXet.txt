@@ -1,0 +1,48 @@
+                                                           BÁO CÁO HIỆU NĂNG MẠNG
+Nguyễn Ngọc Minh - 18020914
+Trần Việt Anh - 18020122
+
+*Phần 1: Đồ thị có thể được vẽ trực tiếp trong code Python hoặc vẽ bằng Gnuplot từ output file mà code tạo ra:
+
+a) Cài đặt Matplotlib cho Python: pip install matplotlib
+
+b) Chạy code Python từ dòng lệnh: python3 delayGraph.py <trace file> <connection name> > <output file>
+
+Connection name có thể là 1 trong 4: (tcp0, tcp1, tcp2, udp)
+
+Ví dụ: 
+
+python3 delayGraph.py out.tr tcp0 > delay-tcp0.tr	#Kết quả: tcp0-delay.png
+
+python3 delayGraph.py out.tr tcp1 > delay-tcp1.tr	#Kết quả: tcp1-delay.png	
+
+python3 delayGraph.py out.tr tcp2 > delay-tcp2.tr	#Kết quả: tcp2-delay.png
+
+python3 delayGraph.py out.tr udp > delay-udp.tr		#Kết quả: udp-delay.png
+
+*Phần 2: Vẽ đồ thị bằng Gnuplot bằng 4 file output:
+
+a) Vẽ đồ thị cho từng luồng:
+
+set title "TCP connection n0-n5, Delay, Mean_Delay and Jitter vs Simulation Time"
+set xlabel "Time (s)"
+plot "delay-tcp0.tr" using 2:4 t "Delay" w lines, "delay-tcp0.tr" using 2:5 t "Mean_Delay" w lines, "delay-tcp0.tr" using 2:6 t "Jitter" w lines
+
+Ta có thể thay `delay-tcp0.tr` bằng bất kỳ file output nào khác được tạo ra bởi code Python `delayGraph.py` phía trên
+
+**Nhận xét: 
+ - Trong các đồ thị, đường độ trễ trung bình của tất cả các gói tin kể từ khi nó bắt đầu xuất hiện (Mean_Delay) khá đồng đều trong khoảng thời gian hoạt động của các kết nối
+ - Các kết nối TCP có đường thăng giáng độ trễ (jitter) bị giảm đột ngột trong khoảng thời gian xuất hiện kết nối UDP, sau đó tăng lên và ổn định
+ - Đường thăng giáng độ trễ và độ trễ trung bình của kết nối UDP có hình dạng giống nhau, và ổn định trong thời gian kết nối hoạt động
+
+b) Vẽ đồ thị so sánh sự thay đổi của delay của 3 kết nối TCP và 1 "kết nối” UDP theo thời gian mô phỏng:
+
+set title "Comparison of packet Delay of TCP and UDP connections"
+set xlabel "Time (s)"
+plot "delay-tcp0.tr" using 2:4 w lines,"delay-tcp1.tr" using 2:4 w lines,"delay-tcp2.tr" using 2:4 w lines,”delay-udp.tr" using 2:4 w lines
+#Kết quả: Comparision delay TCP and UDP connections.png
+**Nhận xét:
+ - Các kết nối TCP có dạng đồ thị độ trễ khá giống nhau do đều truyền dữ liệu trong khoảng thời gian bằng nhau, qua cùng một số node mạng và qua các đường truyền có dải thông và độ trễ như nhau. Còn về
+giá trị độ trễ trung bình sẽ khác nhau do giá trị cực đại của các cửa sổ gửi được thiết lập khác nhau (32, 16 và 64 packet).
+ - Khi xuất hiện kết nối UDP, các độ trễ kết nối TCP đều bị giảm đột ngột và trở lại ổn định sau khi UDP biến mất
+ - Độ trễ trung bình của các gói tin thuộc UDP có giá trị nhỏ nhất, bởi vì khi gửi đi các gói tin, thực thể gửi UDP không cần chờ phản hồi, không cần tự thích ứng với dải thông của đường truyền
